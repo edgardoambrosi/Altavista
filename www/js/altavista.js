@@ -3,10 +3,9 @@ function makeNewPosition(){
     // Get viewport dimensions (remove the dimension of the div)
     var h = $(window).height() - 50;
     var w = $(window).width() - 50;
-    
+
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-    
     return [nh,nw];    
     
 }
@@ -15,12 +14,12 @@ function animateIMG(){
     var newq = makeNewPosition();
     
     //animo lettere
-    $('p').text(String.fromCharCode(randomNum(97,121)));
+    //$('p').text(String.fromCharCode(randomNum(97,121)));
     //animo numeri
-    //$('p').text(randomNum(96,121));
+    $('p').text(randomNum(96,121));
     var oldq = $('p').offset();
     var zoom = $('p').css('zoom',randomZoom(50,150))
-    var speed = calcSpeed([oldq.top, oldq.left], newq, 0.1);
+    var speed = calcSpeed([oldq.top, oldq.left], newq, 0.3);
     
     $('p').animate({ top: newq[0], left: newq[1] }, speed, function(){
       animateIMG();        

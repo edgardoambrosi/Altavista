@@ -4,18 +4,16 @@ var jqmReadyDeferred = $.Deferred();
 $(document).on("deviceready", function() {
   deviceReadyDeferred.resolve();
   $('div').click(function(){
-	$('#rispondi').show()
+    $('#rispondi').show();
 	$('p').stop();
 	$('p').hide();
   })
   $('#ok').click(function(){
-	$('#rispondi').hide();
+    $('#rispondi').hide();
 	$('p').show();
     animateIMG();
   })
   animateIMG();
-  
-  
 });
 
 $(document).on("mobileinit", function () {
