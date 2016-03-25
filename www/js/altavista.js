@@ -6,6 +6,7 @@ function makeNewPosition(){
 
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
+        
     return [nh,nw];    
     
 }
@@ -13,12 +14,23 @@ function makeNewPosition(){
 function animateIMG(){
     var newq = makeNewPosition();
     
-    //animo lettere
-    //$('p').text(String.fromCharCode(randomNum(97,121)));
-    //animo numeri
-    $('p').text(randomNum(96,121));
+    if ( randomNum(0,1) === 0 ){
+		//animo lettere
+    	$('p').text(String.fromCharCode(randomNum(97,121)));
+    }else{	
+	    //animo numeri
+	    $('p').text(randomNum(96,121));
+	}    
     var oldq = $('p').offset();
+
+	//grandezza lettere casuale
     var zoom = $('p').css('zoom',randomZoom(50,150))
+    
+	//grandezza lettere con formula di Snellen     
+    //var visus=randomNum(1,10);
+    //ottoTipo(visus)
+    //var zoom = $('p').css('transform',"scaleY("+ottoTipo(visus)+")")
+    
     var speed = calcSpeed([oldq.top, oldq.left], newq, 0.3);
     
     $('p').animate({ top: newq[0], left: newq[1] }, speed, function(){
@@ -47,6 +59,13 @@ function randomZoom(min,max){
 	var r=(Math.random() * (n - m) + m)/n;
 	return r;
 };
+
+function ottoTipo(visus){
+	//finire di calcolare la grandezza dell'ottotipo a seconda della distanza
+	a3metri=( 1000 * 10 )/ (687,5 * visus);
+	a50cm=( 500 * 10 )/ (687,5 * visus);
+	return a50cm;
+}
 
 function randomNum(min,max){
 	var m=min;

@@ -7,8 +7,16 @@ zoom:.12342524
 }
 
 #rispondi{
-	width: 15%;
+	border:solid;
+	width: 98%;
     position: absolute;
-    top: 45vmax;
-    left: 25vmax;
+    bottom:0;
+}
+#indovina{
+	padding-right:23px;
+    width: 25%;
+    
+}
+.conteggio{
+   zoom: 0.7;
 }
