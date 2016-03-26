@@ -6,12 +6,13 @@ function makeNewPosition(){
 
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-        
+    console.log(h+" "+w+" "+nh+" "+nw+" ")    
     return [nh,nw];    
     
 }
 
 function animateIMG(){
+
     var newq = makeNewPosition();
     
     if ( randomNum(0,1) === 0 ){
@@ -21,24 +22,25 @@ function animateIMG(){
 	    //animo numeri
 	    $('p').text(randomNum(96,121));
 	}    
+	
     var oldq = $('p').offset();
+    var speed = calcSpeed([oldq.top, oldq.left], newq, 0.5);
 
 	//grandezza lettere casuale
-    var zoom = $('p').css('zoom',randomZoom(50,150))
+    /*var zoom = randomZoom(50,150)
+    $('p').animate({ top: newq[0], left: newq[1], zoom: zoom }, speed, function(){
+      animateIMG();        
+    });*/
     
 	//grandezza lettere con formula di Snellen     
-    //var visus=randomNum(1,10);
-    //ottoTipo(visus)
-    //var zoom = $('p').css('transform',"scaleY("+ottoTipo(visus)+")")
-    
-    var speed = calcSpeed([oldq.top, oldq.left], newq, 0.3);
-    
-    $('p').animate({ top: newq[0], left: newq[1] }, speed, function(){
+    var visus=randomNum(8,10);
+    var fontsize=ottoTipo(visus)
+    $('p').animate({ top: newq[0], left: newq[1], fontSize: fontsize }, speed, "linear", function(){
       animateIMG();        
     });
-    
 };
 
+//calcola un certo numero di millisecondi 
 function calcSpeed(prev, next, speedControl) {
     
     var x = Math.abs(prev[1] - next[1]);
@@ -48,6 +50,7 @@ function calcSpeed(prev, next, speedControl) {
     var speedModifier = speedControl;// control the speed here 
 
     var speed = Math.ceil(greatest/speedModifier);
+    //console.log(speed)
     return speed;
 
 };

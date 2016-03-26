@@ -24,14 +24,14 @@ function animateIMG(){
     var oldq = $('p').offset();
 
 	//grandezza lettere casuale
-    //var zoom = $('p').css('zoom',randomZoom(50,150))
+    var zoom = $('p').css('zoom',randomZoom(50,150))
     
 	//grandezza lettere con formula di Snellen     
-    var visus=randomZoom(1,10);
-    console.log(ottoTipo(visus))
-    var zoom = $('p').css('transform',"scaleY("+ottoTipo(visus)+")")
+    //var visus=randomNum(1,10);
+    //ottoTipo(visus)
+    //var zoom = $('p').css('transform',"scaleY("+ottoTipo(visus)+")")
     
-    var speed = calcSpeed([oldq.top, oldq.left], newq, 0.3);
+    var speed = calcSpeed([oldq.top, oldq.left], newq, 0.1);
     
     $('p').animate({ top: newq[0], left: newq[1] }, speed, function(){
       animateIMG();        
@@ -61,10 +61,10 @@ function randomZoom(min,max){
 };
 
 function ottoTipo(visus){
-	a3metri=( 3000 * 10 )/ (687,5 * visus);
+	//finire di calcolare la grandezza dell'ottotipo a seconda della distanza
+	a3metri=( 1000 * 10 )/ (687,5 * visus);
 	a50cm=( 500 * 10 )/ (687,5 * visus);
-	perc=(a500cm*100)/a3metri;
-	return perc;
+	return a50cm;
 }
 
 function randomNum(min,max){
