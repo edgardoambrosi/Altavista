@@ -6,38 +6,42 @@ function makeNewPosition(){
 
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-    console.log(h+" "+w+" "+nh+" "+nw+" ")    
-    return [nh,nw];    
-    
+    return [nh,nw]; 
 }
 
 function animateIMG(){
-
-    var newq = makeNewPosition();
-    
+	//selezioni un simbolo
     if ( randomNum(0,1) === 0 ){
-		//animo lettere
+		//lettere e simboli
     	$('p').text(String.fromCharCode(randomNum(97,121)));
     }else{	
-	    //animo numeri
+	    //numeri
 	    $('p').text(randomNum(96,121));
 	}    
+
+	//selezioni nuovo punto casuale sullo schermo
+    var newq = makeNewPosition();
 	
+
+    //calcoli le coordinate dell'elemento p
     var oldq = $('p').offset();
+    //calcoli il tempo in millisecondi che l'animazione deve durare
     var speed = calcSpeed([oldq.top, oldq.left], newq, 0.5);
 
 	//grandezza lettere casuale
-    /*var zoom = randomZoom(50,150)
-    $('p').animate({ top: newq[0], left: newq[1], zoom: zoom }, speed, function(){
-      animateIMG();        
-    });*/
-    
+    //var zoom = randomZoom(50,150)
+    //$('p').animate({ top: newq[0], left: newq[1], zoom: zoom }, speed, function(){
+    //  animateIMG();        
+    //});
+
 	//grandezza lettere con formula di Snellen     
-    var visus=randomNum(8,10);
+    var visus=randomNum(6,10);
     var fontsize=ottoTipo(visus)
-    $('p').animate({ top: newq[0], left: newq[1], fontSize: fontsize }, speed, "linear", function(){
+    $('p').animate({ top: newq[0]+"mm", left: newq[1]+"mm", fontSize: fontsize+"px" }, speed, "linear", function(){
       animateIMG();        
     });
+    
+
 };
 
 //calcola un certo numero di millisecondi 
